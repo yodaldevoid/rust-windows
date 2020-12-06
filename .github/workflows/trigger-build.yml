@@ -1,0 +1,27 @@
+name: Trigger Image Build
+
+on:
+  schedule:
+    - cron: '10 1 * * *'
+
+jobs:
+  trigger:
+    runs-on: windows-2019
+
+    strategy:
+      matrix:
+        train:
+          - stable
+          - beta
+          - nightly
+
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@main
+      - name: Check if image is up-to-date, and build if not
+        run: .\check-and-build.ps1 $TRAIN $USERNAME $PASSWORD
+        env:
+          TRAIN: ${{ matrix.train }}
+          USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+
