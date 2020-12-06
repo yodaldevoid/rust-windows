@@ -10,10 +10,7 @@ jobs:
 
     strategy:
       matrix:
-        train:
-          - stable
-          - beta
-          - nightly
+        train: [stable, beta, nightly]
 
     steps:
       - name: Check out repo
