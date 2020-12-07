@@ -19,7 +19,7 @@ jobs:
         with:
           ref: ${{ github.ref }}
       - name: Check if image is up-to-date, and build if not
-        run: .\check-and-build.ps1 $TRAIN $USERNAME $PASSWORD
+        run: .\check-and-build.ps1 $env:TRAIN $env:USERNAME $env:PASSWORD
         env:
           TRAIN: ${{ matrix.train }}
           USERNAME: ${{ secrets.DOCKER_USERNAME }}
