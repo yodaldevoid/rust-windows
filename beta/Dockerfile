@@ -13,7 +13,7 @@ RUN vs_buildtools.exe --quiet --wait --norestart --nocache \
 RUN del vs_buildtools.exe
 RUN setx /M __VSCMD_ARG_NO_LOGO "1"
 
-ENTRYPOINT ["C:\\BuildTools\\Common7\\Tools\\VsDevCmd.bat", "&&", "powershell.exe", "-NoLogo", "-ExecutionPolicy", "Bypass"]
+ENTRYPOINT ["powershell.exe", "-NoLogo", "-ExecutionPolicy", "Bypass"]
 
 # Install Rustup and Rust toolchains for x86 and x64
 ADD https://static.rust-lang.org/rustup/dist/x86_64-pc-windows-msvc/rustup-init.exe /rustup-init.exe
