@@ -1,0 +1,12 @@
+check-and-build:
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "schedule"'
+  tags:
+    - shared-windows
+    - windows
+    - windows-1809
+  stage: build
+  parallel:
+    matrix:
+      - TRAIN: [stable, beta, nightly]
+  script: .\check-and-build.ps1 $env:TRAIN $env:USERNAME $env:PASSWORD
